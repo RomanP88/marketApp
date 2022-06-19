@@ -36,7 +36,7 @@ public class ProductController {
     }
 
     @PostMapping("/products/save")
-    public Product findById(Product product){
+    public Product findSave(Product product){
        return productService.updateOfSave(product);
     }
 
