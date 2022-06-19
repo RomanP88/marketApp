@@ -1,4 +1,4 @@
-package ru.market.marketApp;
+package ru.market.marketApp.angular_js;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
