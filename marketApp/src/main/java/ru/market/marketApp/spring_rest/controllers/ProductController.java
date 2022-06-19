@@ -8,8 +8,6 @@ import ru.market.marketApp.spring_rest.dto.ProductDto;
 import ru.market.marketApp.spring_rest.exceptions.ResourceNotFoundException;
 import ru.market.marketApp.spring_rest.model.Product;
 import ru.market.marketApp.spring_rest.services.ProductService;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,8 +26,8 @@ public class ProductController {
 
 
     @GetMapping("/products/{id}")
-    public Product findById(@PathVariable Long id){
-        return productService.findById(id).orElseThrow(()-> new ResourceNotFoundException("Product not found, id: " + id));
+    public ProductDto findById(@PathVariable Long id){
+        return new ProductDto(productService.findById(id).orElseThrow(()-> new ResourceNotFoundException("Product not found, id: " + id)));
     }
 
     @GetMapping("/products/delete/{id}")
