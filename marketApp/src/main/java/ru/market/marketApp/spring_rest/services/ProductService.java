@@ -9,7 +9,6 @@ import ru.market.marketApp.spring_rest.repositories.ProductRepository;
 import java.util.List;
 import java.util.Optional;
 
-
 @Service
 @RequiredArgsConstructor
 public class ProductService {
@@ -35,9 +34,7 @@ public class ProductService {
     }
 
 
-    public List<Product> findProductsByCostBetween(int minCost, int maxCost){
-        return productRepository.findProductsByCostBetween(minCost, maxCost);
-    }
+
 
 }
 
