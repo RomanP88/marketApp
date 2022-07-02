@@ -1,4 +1,4 @@
-package ru.market.marketApp.spring_rest.exceptions;
+package ru.market.marketApp.spring_rest1.exceptions;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

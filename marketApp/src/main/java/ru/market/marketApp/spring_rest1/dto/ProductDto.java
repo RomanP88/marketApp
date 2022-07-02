@@ -1,9 +1,9 @@
-package ru.market.marketApp.spring_rest.dto;
+package ru.market.marketApp.spring_rest1.dto;
 
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.market.marketApp.spring_rest.model.Product;
+import ru.market.marketApp.spring_rest1.model.Product;
 
 @Data
 @NoArgsConstructor

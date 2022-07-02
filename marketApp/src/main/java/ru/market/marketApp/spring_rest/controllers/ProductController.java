@@ -1,7 +1,6 @@
 package ru.market.marketApp.spring_rest.controllers;
 
 
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.market.marketApp.spring_rest.dto.ProductDto;
@@ -10,10 +9,13 @@ import ru.market.marketApp.spring_rest.model.Category;
 import ru.market.marketApp.spring_rest.model.Product;
 import ru.market.marketApp.spring_rest.services.CategoryService;
 import ru.market.marketApp.spring_rest.services.ProductService;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+//@RequestMapping("/api/v1")
+
 @RequiredArgsConstructor
 public class ProductController {
 
@@ -52,10 +54,5 @@ public class ProductController {
     }
 
 
-    @GetMapping("/products/findCost")
-    public List<Product> findProductsByCostBetween(@RequestParam (name = "min") int minCost,
-                                                   @RequestParam (name = "min") int maxCost){
 
-        return productService.findProductsByCostBetween(minCost, maxCost);
-    }
 }
