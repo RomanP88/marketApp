@@ -1,92 +1,44 @@
-angular.module('front', []).controller('appController', function ($scope, $http) {
+(function () {
+    angular
+        .module('front', ['ngRoute'])
+        .config(config)
+        .run(run);
+
+    function config($routeProvider) {
+        $routeProvider
+            .when('/', {
+                templateUrl: 'welcome/welcome.html',
+                controller: 'welcomeController'
+            })
+            .when('/store', {
+                templateUrl: 'store/store.html',
+                controller: 'storeController'
+            })
+            .when('/edit_product/:productId', {
+                templateUrl: 'edit_product/edit_product.html',
+                controller: 'editProductController'
+            })
+            .when('/create_product', {
+                templateUrl: 'create_product/create_product.html',
+                controller: 'createProductController'
+            })
+            .when('/cart' , {
+                templateUrl: 'cart/cart.html',
+                controller: 'cartController'
+            })
+
+
+
+            .otherwise({
+                redirectTo: '/'
+            });
+    }
+
+    function run($rootScope, $http) {
+    }
+})();
+
+angular.module('front').controller('indexController', function ($rootScope, $scope, $http) {
     const contextPath = 'http://localhost:8189/market/api/v1';
 
-    let currentPageIndex = 1;
-
-     $scope.loadProducts = function (pageIndex = 1) {
-         currentPageIndex = pageIndex;
-        $http({
-            url:contextPath + '/products',
-            method: 'GET',
-            params: {
-                p: pageIndex
-            }
-        }).then(function (response) {
-            $scope.ProductsPage = response.data;
-            $scope.paginationArray = $scope.generatePageIndex(1,$scope.ProductsPage.totalPages);
-        });
-    }
-
-
-     $scope.deleteScore = function (productId) {
-        $http.delete(contextPath + '/products/delete/' + productId)
-            .then(function (response) {
-                $scope.loadProducts(currentPageIndex);
-            });
-    }
-
-
-    $scope.createProduct = function (){
-        $http.post(contextPath + '/products', $scope.newProduct)
-            .then(function successCallback (responce){
-                $scope.loadProducts(currentPageIndex);
-                $scope.newProduct = null;
-
-            }, function failCallback (responce) {
-               alert(responce.data.message)
-            });
-    }
-
-    $scope.generatePageIndex = function (startPage, lastPage){
-        let arr = [];
-        for (let i = startPage; i < lastPage + 1; i++) {
-            arr.push(i);
-        }
-        return arr;
-    }
-
-
-    $scope.nextPage = function (){
-         currentPageIndex++;
-         if(currentPageIndex > $scope.ProductsPage.totalPages){
-             currentPageIndex = $scope.ProductsPage.totalPages;
-         }
-        $scope.loadProducts(currentPageIndex);
-    }
-
-  $scope.prevPage = function (){
-         currentPageIndex--;
-         if(currentPageIndex < 1){
-             currentPageIndex = $scope.ProductsPage.totalPages;
-         }
-        $scope.loadProducts(currentPageIndex);
-    }
-
-    $scope.loadProducts(currentPageIndex);
-
-
-
-    $scope.productForUpdateList = function (productId){
-        $http.get(contextPath + '/products/'+ productId)
-            .then(function successCallback (responce){
-
-                $scope.new_update = responce.data;
-
-            }, function failCallback (responce) {
-                alert(responce.data.message)
-            })
-    }
-
-
-    $scope.updateProduct = function (){
-        $http.put(contextPath + '/products', $scope.new_update)
-            .then(function successCallback (responce){
-                $scope.loadProducts(currentPageIndex);
-                $scope.new_update = null;
-
-            }, function failCallback (responce) {
-                alert(responce.data.message)
-            });
-    }
 });
-
