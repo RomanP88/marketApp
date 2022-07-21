@@ -1,12 +1,12 @@
 angular.module('front').controller('storeController', function ($scope, $http, $location) {
-    const contextPath = 'http://localhost:8189/market/api/v1';
+    const contextPath = 'http://localhost:8189/market/api/v1/';
 
     let currentPageIndex = 1;
 
     $scope.loadProducts = function (pageIndex = 1) {
         currentPageIndex = pageIndex;
         $http({
-            url: contextPath + '/products',
+            url: contextPath + 'products',
             method: 'GET',
             params: {
                 p: pageIndex
@@ -19,7 +19,7 @@ angular.module('front').controller('storeController', function ($scope, $http, $
 
 
     $scope.deleteScore = function (productId) {
-        $http.delete(contextPath + '/products/delete/' + productId)
+        $http.delete(contextPath + 'products/delete/' + productId)
             .then(function (response) {
                 $scope.loadProducts(currentPageIndex);
             });
@@ -51,12 +51,17 @@ angular.module('front').controller('storeController', function ($scope, $http, $
 
     $scope.loadProducts(currentPageIndex);
 
+
     $scope.productToList = function (productId){
-        $location.path('/edit_product/' + productId);
+        $location.path('edit_product/' + productId);
     }
+
+
     $scope.adCart = function (id){
-        $http.post(contextPath + '/carts/' + id)
-        ;
+        $http.post(contextPath + 'carts/' + id);
+        alert("Товар добавлен в корзину")
+
+
     }
 
 

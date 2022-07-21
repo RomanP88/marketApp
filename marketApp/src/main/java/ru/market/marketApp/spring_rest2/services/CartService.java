@@ -32,7 +32,6 @@ public class CartService {
     }
 
     public void deleteCart(Long id){
-
         cart.getCartAllProduct().removeIf(product -> product.getId().equals(id));
     }
 
