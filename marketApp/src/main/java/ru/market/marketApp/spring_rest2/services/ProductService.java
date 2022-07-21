@@ -7,7 +7,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import ru.market.marketApp.spring_rest2.dto.ProductDto;
 import ru.market.marketApp.spring_rest2.exceptions.ResourceNotFoundException;
-import ru.market.marketApp.spring_rest2.model.Category;
 import ru.market.marketApp.spring_rest2.model.Product;
 import ru.market.marketApp.spring_rest2.repositories.ProductRepository;
 
@@ -35,14 +34,14 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
-    public Product updateOfSave(Product product) {
-       return productRepository.save(product);
+    public void updateOfSave(Product product) {
+        productRepository.save(product);
     }
 
     @Transactional
     public void updateProduct(ProductDto productDto) {
         Product product = findById(productDto.getId()).orElseThrow(()
-                -> new ResourceNotFoundException("Category not found, id: " + productDto.getId()));;
+                -> new ResourceNotFoundException("Category not found, id: " + productDto.getId()));
         product.setTitle(productDto.getTitle());
         product.setCost(productDto.getCost());
 //        Category category = categoryService.findByTitle(productDto.getCategoryTitle()).orElseThrow(()

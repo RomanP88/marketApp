@@ -6,9 +6,9 @@
             <td>ID</td>
             <td>TITLE</td>
             <td>COST</td>
-            <td>DELETE</td>
-            <td>UPDATE</td>
-            <td>CART</td>
+            <td></td>
+            <td></td>
+            <td></td>
 
         </tr>
 
@@ -19,15 +19,15 @@
             <td >{{p.cost}}</td>
 
             <td>
-                <button  class="btn btn-primary" ng-click="deleteScore(p .id)">Удалить</button>
+                <button  class="btn btn-primary" ng-click="deleteScore(p .id)" ng-show="isUserLoggedIn()">Удалить</button>
             </td>
 
             <td>
-                <button  class="btn btn-primary" ng-click="productToList(p.id)">Изменить</button>
+                <button  class="btn btn-primary" ng-click="productToList(p.id)" ng-show="isUserLoggedIn()">Изменить</button>
             </td>
 
             <td>
-                <button  class="btn btn-primary" ng-click="adCart(p.id)">Добавить в корзину</button>
+                <button  class="btn btn-primary" ng-click="adCart(p.id)" ng-show="isUserLoggedIn()">Добавить в корзину</button>
             </td>
 
 
