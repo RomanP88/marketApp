@@ -6,7 +6,6 @@ angular.module('front').controller('cartController', function ($scope, $http) {
         $http.get(contextPath + '/carts')
             .then(function (response) {
                 $scope.cartPage = response.data;
-                $scope.loadCartProducts();
             });
 
     }
@@ -15,6 +14,7 @@ angular.module('front').controller('cartController', function ($scope, $http) {
         $http.get(contextPath + '/carts/delete/' + cartId)
             .then(function (response) {
                 $scope.loadCartProducts();
+
             });
     }
     $scope.loadCartProducts();

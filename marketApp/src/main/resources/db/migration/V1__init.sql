@@ -52,3 +52,47 @@ values
     ('Sausage', 120),
     ('Cheese', 100),
     ('Dumplings', 130);
+
+
+create table users
+(
+    id              bigserial primary key,
+    username        varchar(30) not null unique,
+    password        varchar(100) not null,
+    email           varchar(50) not null unique,
+    enthusiasm      varchar(70),
+    created_at timestamp default  current_time,
+    updated_at timestamp default  current_time
+);
+
+
+create table roles
+(
+    id          serial primary key ,
+    name        varchar(50) not null,
+    created_at timestamp default  current_time,
+    updated_at timestamp default  current_time
+);
+
+create table users_roles
+(
+    user_id bigint not null references users (id),
+    role_id bigint not null references roles (id),
+    primary key (user_id, role_id)
+);
+
+
+insert into users(username, password, email, enthusiasm)
+values
+    ('Bob', '$2a$12$3gW6p2O3C9ufSMBHLDsuHOKulDKNu2iyvo1CEFuhSudeQQzdGOKR6', 'bob18@mail.ru', 'football'),
+    ('John', '$2a$12$jZSwdf7wsnu3RvUJ4YtB7.BePRAab/Lm3bQNFQPFeyyxBnzqnyVc2', 'john99@mail.ru', 'dance');
+
+insert into roles(name)
+values
+    ('ROLE_USER'), ('ROLE_ADMIN');
+
+insert into users_roles (user_id, role_id)
+values
+    (1, 2), (2, 1);
+
+

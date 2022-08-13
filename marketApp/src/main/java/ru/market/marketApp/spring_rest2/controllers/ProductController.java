@@ -4,11 +4,9 @@ package ru.market.marketApp.spring_rest2.controllers;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
+import ru.market.marketApp.spring_rest1.exceptions.ResourceNotFoundException;
 import ru.market.marketApp.spring_rest2.dto.ProductDto;
-import ru.market.marketApp.spring_rest2.exceptions.ResourceNotFoundException;
-import ru.market.marketApp.spring_rest2.model.Category;
 import ru.market.marketApp.spring_rest2.model.Product;
-import ru.market.marketApp.spring_rest2.services.CategoryService;
 import ru.market.marketApp.spring_rest2.services.ProductService;
 
 
